@@ -1,484 +1,454 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio | Mahasiswa Teknologi Informasi</title>
+    <title>Angger Naufal Abror — Web Developer & IT Student</title>
+    <meta name="description" content="Portfolio of Angger Naufal Abror — Information Technology student at Universitas Tidar focused on web engineering, UI/UX systems, and machine learning.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112.5,500..800;125,600..800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="assets/Logo/nauro-mark.png">
+    <link rel="apple-touch-icon" href="assets/Logo/nauro-mark.png">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-    <link rel="apple-touch-icon" href="assets/icons/favicon.svg">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <!-- Logo -->
-                <a href="#home" class="logo">My <span>Portofolio</span></a>
-                
-                <!-- Desktop Navigation -->
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                    <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                
-                <!-- Dark/Light Mode Toggle -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
+    <!-- Top Sticky Navigation (49px) -->
+    <header class="site-header">
+        <div class="nav-inner">
+            <div class="nav-left">
+                <a href="#hero" class="brand-link" aria-label="Nauro-Dev Home">
+                    <span class="brand-mark" aria-hidden="true">
+                        <img src="assets/Logo/nauro-mark.png" alt="" width="18" height="18" style="display:block;object-fit:contain;">
+                    </span>
+                    <span>NAURO-DEV</span>
+                </a>
+                <span class="nav-pill-active">PORTFOLIO</span>
+            </div>
+
+            <div class="nav-right">
+                <a href="https://github.com/ANGGER4" target="_blank" rel="noopener noreferrer" class="nav-icon-btn" aria-label="GitHub Profile">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>
+                <button type="button" id="themeToggle" class="nav-icon-btn" aria-label="Toggle color theme">
+                    <svg id="iconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                    </svg>
+                    <svg id="iconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" style="display:none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
                 </button>
-                
-                <!-- Mobile Menu Toggle -->
-                <div class="hamburger" id="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h4 class="hero-subtitle">Halo, Saya</h4>
-                    <h1 class="hero-title">Angger<span class="text-gradient">Naufal Abror</span></h1>
-                    <div class="typing-container">
-                        <h2 class="hero-role">
-                            <span class="typed-text"></span>
-                            <span class="cursor">&nbsp;</span>
-                        </h2>
-                    </div>
-                    <p class="hero-description">
-                        Saya seorang mahasiswa Teknologi Informasi yang fokus pada pengembangan web, 
-                        desain UI/UX, dan inovasi digital. Selalu antusias untuk mempelajari teknologi 
-                        terbaru dan menerapkannya dalam solusi nyata.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">Contact Me</a>
-                        <a href="#experience" class="btn btn-secondary">View Experience</a>
-                        <a href="assets/cv/CV.pdf" class="btn btn-outline" id="downloadCV" download="CV_Angger_Naufal_Abror.pdf">
-                            <i class="fas fa-download"></i> Download CV
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="image-container">
-                        <div class="avatar-placeholder">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <div class="image-glow"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <a href="#about">
-                    <i class="fas fa-chevron-down"></i>
+                <a href="assets/cv/CV.pdf" download="CV_Angger_Naufal_Abror.pdf" class="nav-cta">
+                    <span>Download CV</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/>
+                    </svg>
                 </a>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section about">
-            <div class="container">
-                <h2 class="section-title">About <span class="text-gradient">Me</span></h2>
-                <div class="about-container">
-                    <div class="about-image">
-                        <div class="about-avatar">
-                            <img src="assets/Logo/kali linux.jpg" alt="Kali Linux Dragon Logo" class="kali-logo">
-                        </div>
-                    </div>
-                    <div class="about-content">
-                        <h3 class="about-title">Mahasiswa Teknologi Informasi</h3>
-                        <p class="about-text">
-                            Saya adalah mahasiswa Teknologi Informasi di Universitas Tidar dengan minat besar dalam 
-                            pengembangan web dan desain antarmuka pengguna. Dengan latar belakang akademis yang kuat 
-                            dan pengalaman praktis melalui berbagai proyek, saya berkomitmen untuk terus belajar dan 
-                            berkembang di bidang teknologi informasi.
-                        </p>
-                        <p class="about-text">
-                            Saat ini, saya fokus mempelajari teknologi front-end modern seperti HTML5, CSS3, Python, JavaScript, 
-                            serta berbagai framework seperti React dan Vue.js. Saya juga tertarik pada aspek UI/UX design 
-                            untuk menciptakan pengalaman pengguna yang optimal.
-                        </p>
-                        <div class="about-highlights">
-                            <div class="highlight">
-                                <i class="fas fa-university"></i>
-                                <div>
-                                    <h4>Universitas Tidar</h4>
-                                    <p>S1 Teknologi Informasi</p>
-                                </div>
-                            </div>
-                            <div class="highlight">
-                                <i class="fas fa-bullseye"></i>
-                                <div>
-                                    <h4>Minat & Fokus</h4>
-                                    <p>Web Development, UI/UX Design, Machine Learning</p>
-                                </div>
-                            </div>
-                            <div class="highlight">
-                                <i class="fas fa-award"></i>
-                                <div>
-                                    <h4>Sertifikasi</h4>
-                                    <p>Sertifikat CyberSecurity Basic</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section skills">
-            <div class="container">
-                <h2 class="section-title">My <span class="text-gradient">Skills</span></h2>
-                <div class="skills-container">
-                    <!-- Hard Skills -->
-                    <div class="skills-category">
-                        <h3 class="category-title">
-                            <i class="fas fa-code"></i> Hard Skills
-                        </h3>
-                        <div class="skills-grid">
-                            <div class="skill-card">
-                                <div class="skill-header">
-                                    <i class="fab fa-html5"></i>
-                                    <h4>HTML5</h4>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="95"></div>
-                                    </div>
-                                    <span class="progress-value">95%</span>
-                                </div>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-header">
-                                    <i class="fab fa-css3-alt"></i>
-                                    <h4>CSS3</h4>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="90"></div>
-                                    </div>
-                                    <span class="progress-value">90%</span>
-                                </div>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-header">
-                                    <i class="fab fa-js"></i>
-                                    <h4>JavaScript</h4>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="85"></div>
-                                    </div>
-                                    <span class="progress-value">85%</span>
-                                </div>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-header">
-                                    <i class="fab fa-react"></i>
-                                    <h4>React</h4>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="80"></div>
-                                    </div>
-                                    <span class="progress-value">80%</span>
-                                </div>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-header">
-                                    <i class="fas fa-palette"></i>
-                                    <h4>UI/UX Design</h4>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="88"></div>
-                                    </div>
-                                    <span class="progress-value">88%</span>
-                                </div>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-header">
-                                    <i class="fas fa-database"></i>
-                                    <h4>Database</h4>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" data-width="82"></div>
-                                    </div>
-                                    <span class="progress-value">82%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Soft Skills -->
-                    <div class="skills-category">
-                        <h3 class="category-title">
-                            <i class="fas fa-user-check"></i> Soft Skills
-                        </h3>
-                        <div class="soft-skills-grid">
-                            <div class="soft-skill">
-                                <div class="soft-skill-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h4>Teamwork</h4>
-                                <p>Kemampuan bekerja dalam tim dan berkolaborasi dengan berbagai bidang</p>
-                            </div>
-                            <div class="soft-skill">
-                                <div class="soft-skill-icon">
-                                    <i class="fas fa-lightbulb"></i>
-                                </div>
-                                <h4>Problem Solving</h4>
-                                <p>Analisis masalah dan pengembangan solusi teknologi yang efektif</p>
-                            </div>
-                            <div class="soft-skill">
-                                <div class="soft-skill-icon">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <h4>Communication</h4>
-                                <p>Kemampuan menyampaikan ide teknis dengan jelas kepada berbagai audiens</p>
-                            </div>
-                            <div class="soft-skill">
-                                <div class="soft-skill-icon">
-                                    <i class="fas fa-tasks"></i>
-                                </div>
-                                <h4>Time Management</h4>
-                                <p>Mengelola prioritas dan menyelesaikan proyek tepat waktu</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience & Education Section -->
-        <section id="experience" class="section experience">
-            <div class="container">
-                <h2 class="section-title">Experience & <span class="text-gradient">Education</span></h2>
-                <div class="timeline">
-                    <!-- Timeline Item 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2022 - 2025</div>
-                            <h3 class="timeline-title">MAN 1 Magelang</h3>
-                            <h4 class="timeline-subtitle">SMA</h4>
-                            <p class="timeline-description">
-                                Fokus pada pengembangan keterampilan akademik dan non-akademik.
-                                Aktif dalam berbagai kegiatan ekstrakurikuler seperti MPK, OSN Informatika, Pramuka, dan Klub Teknologi.
-                            </p>
-                            <div class="timeline-tags">
-                                <span>React.js</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                        </div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2024 - Sekarang</div>
-                            <h3 class="timeline-title">Web Development (Freelance)</h3>
-                            <h4 class="timeline-subtitle">Berbagai Klien & Proyek</h4>
-                            <p class="timeline-description">
-                                Membuat website untuk pelanggan.
-                                Melakukan user research, membuat wireframe, prototype, dan design system.
-                            </p>
-                            <div class="timeline-tags">
-                                <span>Figma</span>
-                                <span>Adobe XD</span>
-                                <span>Vs Code</span>
-                            </div>
-                        </div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2025 - Sekarang</div>
-                            <h3 class="timeline-title">Mahasiswa Teknologi Informasi</h3>
-                            <h4 class="timeline-subtitle">Universitas Tidar</h4>
-                            <p class="timeline-description">
-                                Fokus pada pengembangan web, basis data, kecerdasan buatan, dan desain antarmuka.
-                                Aktif dalam organisasi kemahasiswaan sebagai ketua divisi teknologi.
-                            </p>
-                            <div class="timeline-tags">
-                                <span>Web Development</span>
-                                <span>Machine Learning Engineer</span>
-                            </div>
-                        </div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 4 -->
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2024 - 2025</div>
-                            <h3 class="timeline-title">Sertifikasi</h3>
-                            <h4 class="timeline-subtitle">Basic CyberSecurity</h4>
-                            <p class="timeline-description">
-                                Mendapatkan sertifikasi dasar keamanan siber dan  Front-End Developer.
-                                Mempelajari dasar-dasar IT support, pengembangan web, dan desain responsif.
-                            </p>
-                            <div class="timeline-tags">
-                                <span>IT Support</span>
-                                <span>Front-End Developer</span>
-                            </div>
-                        </div>
-                        <div class="timeline-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section contact">
-            <div class="container">
-                <h2 class="section-title">Hit Me <span class="text-gradient">UP</span></h2>
-                <p class="section-subtitle">Silakan hubungi saya untuk kolaborasi, pertanyaan, atau sekadar menyapa!</p>
-                
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p>anggernaufal503@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Telepon</h4>
-                                <p>+62 851 5633 6420</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Lokasi</h4>
-                                <p>Magelang, Indonesia</p>
-                            </div>
-                        </div>
-                        <div class="social-links">
-                            <a href="https://linkedin.com/in/angger-naufal-abror-609486366" class="social-link" target="_blank" rel="noopener">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://github.com/ANGGER4" class="social-link" target="_blank" rel="noopener">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://instagram.com/ini_anggr" class="social-link" target="_blank" rel="noopener">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Nama Lengkap" required>
-                            <div class="form-underline"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" placeholder="Email Address" required>
-                            <div class="form-underline"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" placeholder="Subject" required>
-                            <div class="form-underline"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-                            <div class="form-underline"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">
-                            <span class="btn-text">Send Message</span>
-                            <div class="btn-ripple"></div>
-                        </button>
-                        <div id="formMessage" class="form-message"></div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="#home" class="logo">My<span>Porto</span></a>
-                    <p>Mahasiswa Teknologi Informasi dengan passion dalam pengembangan web dan perancangan software.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Skills</h4>
-                    <ul>
-                        <li><a href="#skills">Web Development</a></li>
-                        <li><a href="#skills">UI/UX Design</a></li>
-                        <li><a href="#skills">Frontend</a></li>
-                        <li><a href="#skills">Mobile Development</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Follow Me</h4>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/angger-naufal-abror-609486366/" class="social-link" target="_blank" rel="noopener">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/ANGGER4" class="social-link" target="_blank" rel="noopener">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://instagram.com/ini_anggr" class="social-link" target="_blank" rel="noopener">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Angger Naufal Abror. All rights reserved.</p>
-                <a href="#home" class="back-to-top" id="backToTop">
-                    <i class="fas fa-chevron-up"></i>
-                </a>
+                <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                        <path d="M4 7h16M4 12h16M4 17h16"/>
+                    </svg>
+                </button>
             </div>
         </div>
-    </footer>
 
+        <!-- Mobile Drawer -->
+        <div id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+            <a href="#profile"><span>01 / Profile</span><span>→</span></a>
+            <a href="#works"><span>02 / Selected Works</span><span>→</span></a>
+            <a href="#principles"><span>03 / Principles &amp; Stack</span><span>→</span></a>
+            <a href="#experience"><span>04 / History</span><span>→</span></a>
+            <a href="#contact"><span>05 / Contact</span><span>→</span></a>
+            <a href="assets/cv/CV.pdf" download="CV_Angger_Naufal_Abror.pdf"><span>Download CV (PDF)</span><span>↓</span></a>
+        </div>
+    </header>
+
+    <!-- Right-Edge Scroll Ruler Rail (60px Desktop) -->
+    <aside class="ruler-rail" aria-label="Scroll progress indicator">
+        <div class="ruler-readout">
+            <span class="hud-label" style="font-size: 9px;">POS</span>
+            <span id="rulerPercent" class="ruler-percent">000%</span>
+        </div>
+
+        <div class="ruler-track" aria-hidden="true">
+            <div id="rulerIndicator" class="ruler-indicator"></div>
+            <div class="ruler-tick major"><span>00</span></div>
+            <div class="ruler-tick"></div>
+            <div class="ruler-tick major"><span>25</span></div>
+            <div class="ruler-tick"></div>
+            <div class="ruler-tick major"><span>50</span></div>
+            <div class="ruler-tick"></div>
+            <div class="ruler-tick major"><span>75</span></div>
+            <div class="ruler-tick"></div>
+            <div class="ruler-tick major"><span>100</span></div>
+        </div>
+    </aside>
+
+    <!-- 4-Stage Curved & Docked Floating Section Navigator Overlay (Desktop) -->
+    <nav id="hudJumpOverlay" class="hud-jump-overlay" aria-label="Section navigation"></nav>
+
+    <!-- Main Page Shell -->
+    <div class="page-shell">
+        <main class="blueprint-frame">
+            <!-- HERO -->
+            <section id="hero" class="hero">
+                <span class="tick tick-tl" aria-hidden="true"></span>
+                <span class="tick tick-tr" aria-hidden="true"></span>
+
+                <div class="hero-spiral-stage" aria-hidden="true">
+                    <!-- Rotating multi-color spiral arcs (flat strokes for 60fps compositing) -->
+                    <svg class="hero-spiral-svg" viewBox="0 0 1000 1000" fill="none">
+                        <g class="spiral-rotator-cw">
+                            <path d="M500 500 m-190 0 a190 190 0 0 1 380 0" stroke="#2f7bf5" stroke-opacity="0.55" stroke-width="1.6"/>
+                            <path d="M500 500 m190 0 a190 190 0 0 1 -380 0" stroke="#8b5cf6" stroke-opacity="0.55" stroke-width="1.6"/>
+                            <path d="M500 500 m0 -290 a290 290 0 0 1 290 290" stroke="#02da96" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <path d="M500 500 m0 290 a290 290 0 0 1 -290 -290" stroke="#e8573f" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <circle cx="500" cy="500" r="240" stroke="currentColor" stroke-width="1" stroke-dasharray="3 7" opacity="0.45"/>
+                        </g>
+
+                        <g class="spiral-rotator-ccw">
+                            <path d="M500 500 m-375 -110 a390 390 0 0 1 520 -180" stroke="#f2a516" stroke-opacity="0.48" stroke-width="1.5"/>
+                            <path d="M500 500 m375 110 a390 390 0 0 1 -520 180" stroke="#14a9c4" stroke-opacity="0.48" stroke-width="1.5"/>
+                            <path d="M500 500 m-260 340 a430 430 0 0 1 -160 -410" stroke="#8b5cf6" stroke-opacity="0.45" stroke-width="1.4"/>
+                            <path d="M500 500 m260 -340 a430 430 0 0 1 160 410" stroke="#e8573f" stroke-opacity="0.45" stroke-width="1.4"/>
+                            <circle cx="500" cy="500" r="340" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+                            <circle cx="500" cy="500" r="440" stroke="currentColor" stroke-width="1" stroke-dasharray="4 8" opacity="0.3"/>
+                        </g>
+
+                        <path d="M500 20V980M20 500H980" stroke="currentColor" stroke-width="1" opacity="0.22"/>
+                    </svg>
+
+                    <!-- Orbiting rounded-square project badges (desktop) -->
+                    <div class="hero-orbit-ring">
+                        <div class="orbit-badge orbit-1" style="--badge-color: #2f7bf5;" title="DreamSaver">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                        </div>
+                        <div class="orbit-badge orbit-2" style="--badge-color: #02da96;" title="StuntingDetector">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4"/></svg>
+                        </div>
+                        <div class="orbit-badge orbit-3" style="--badge-color: #e8573f;" title="EnumWorkshop">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        </div>
+                        <div class="orbit-badge orbit-4" style="--badge-color: #f2a516;" title="BigData">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        </div>
+                        <div class="orbit-badge orbit-5" style="--badge-color: #8b5cf6;" title="DataStructure">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2.5"/><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="M10.8 7.2L7.2 14.8M13.2 7.2l3.6 7.6"/></svg>
+                        </div>
+                        <div class="orbit-badge orbit-6" style="--badge-color: #14a9c4;" title="OOPJava">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-content" data-reveal>
+                    <div class="hero-kicker">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span class="hud-label" style="color: var(--ink);">MAGELANG, ID · AVAILABLE FOR COLLABORATION</span>
+                    </div>
+
+                    <div id="heroWordmark" class="hero-wordmark" role="img" aria-label="ANGGER ABROR">ANGGER ABROR</div>
+                    <h1 class="hero-title font-display">
+                        Building clean web &amp; <span class="text-accent-ink">intelligent</span> systems.
+                    </h1>
+                    <p class="hero-desc">
+                        Information Technology undergraduate at Universitas Tidar. Focused on front-end engineering,
+                        interface systems, and applied machine learning—crafted with precision and zero bloat.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="assets/cv/CV.pdf" download="CV_Angger_Naufal_Abror.pdf" class="btn btn-invert">
+                            <span>Download CV</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/>
+                            </svg>
+                        </a>
+                        <a href="#works" class="btn btn-outline">
+                            <span>Explore Selected Works</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14m-6-6l6 6-6 6"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="hero-meta-strip">
+                        <span class="hud-label">UNIVERSITAS TIDAR</span>
+                        <span class="hud-label">·</span>
+                        <span class="hud-label">WEB DEVELOPMENT</span>
+                        <span class="hud-label">·</span>
+                        <span class="hud-label">UI/UX SYSTEMS</span>
+                        <span class="hud-label">·</span>
+                        <span class="hud-label">GITHUB.COM/ANGGER4</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 01 / PROFILE & FOCUS -->
+            <section id="profile">
+                <div class="eyebrow-bar">
+                    <span class="hud-label" style="color: var(--ink);">01 / PROFILE &amp; FOCUS</span>
+                    <span class="hud-label eyebrow-right">IT STUDENT · FREELANCE WEB DEVELOPER</span>
+                </div>
+
+                <div class="profile-split">
+                    <div class="profile-left" data-reveal>
+                        <div>
+                            <h2 class="section-heading font-display">
+                                Engineering with <span class="text-accent-ink">craft.</span>
+                            </h2>
+                            <p class="profile-bio">
+                                I'm Angger Naufal Abror, an Information Technology student at Universitas Tidar
+                                with hands-on experience building responsive websites, design systems, and Python data pipelines.
+                            </p>
+                            <p class="profile-bio">
+                                Whether shipping a client landing page or experimenting with machine learning models,
+                                I care about readable code, sharp visual hierarchy, and reliable static performance.
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="hud-label" style="margin-bottom: 10px;">DIRECT CHANNELS</div>
+                            <div class="connect-strip">
+                                <button type="button" class="connect-cell js-copy-email" data-email="devnauro@gmail.com">
+                                    <span>Copy Email</span>
+                                </button>
+                                <a href="https://github.com/ANGGER4" target="_blank" rel="noopener noreferrer" class="connect-cell">
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://www.linkedin.com/in/angger-naufal-abror-609486366/" target="_blank" rel="noopener noreferrer" class="connect-cell">
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://instagram.com/ini_anggr" target="_blank" rel="noopener noreferrer" class="connect-cell">
+                                    <span>Instagram</span>
+                                </a>
+                                <a href="https://medium.com/@anggernaufal" target="_blank" rel="noopener noreferrer" class="connect-cell">
+                                    <span>Medium</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-right" data-reveal>
+                        <div class="focus-cell">
+                            <span class="tick tick-tl" aria-hidden="true"></span>
+                            <div class="icon-box" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                                    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                                </svg>
+                            </div>
+                            <h3>Web Engineering</h3>
+                            <p>Semantic HTML5, modern CSS architecture, TypeScript, React, and Vue.js built for speed.</p>
+                        </div>
+
+                        <div class="focus-cell">
+                            <div class="icon-box" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                            </div>
+                            <h3>UI/UX Systems</h3>
+                            <p>Wireframing, Figma prototyping, and structured design tokens that scale across viewports.</p>
+                        </div>
+
+                        <div class="focus-cell">
+                            <div class="icon-box" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                                    <circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4"/>
+                                </svg>
+                            </div>
+                            <h3>Machine Learning</h3>
+                            <p>Applied Python workflows, data structures, and predictive modeling for real-world problems.</p>
+                        </div>
+
+                        <div class="focus-cell">
+                            <div class="icon-box" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <h3>Security Basics</h3>
+                            <p>Certified in foundational cybersecurity, Linux workflows, and clean static deployment practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 02 / SELECTED WORKS -->
+            <section id="works">
+                <div class="eyebrow-bar">
+                    <span class="hud-label" style="color: var(--ink);">02 / SELECTED WORKS</span>
+                    <span class="hud-label eyebrow-right">CURATED REPOSITORIES · GITHUB.COM/ANGGER4</span>
+                </div>
+
+                <div class="works-intro" data-reveal>
+                    <div>
+                        <h2 class="section-heading font-display" style="margin-bottom: 8px;">
+                            Seven builds. <span class="text-accent-ink">Open source.</span>
+                        </h2>
+                        <p style="color: var(--muted); max-width: 540px;">
+                            Real repositories spanning web applications, machine learning pipelines, and computer science fundamentals.
+                        </p>
+                    </div>
+                    <a href="https://github.com/ANGGER4?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <span>All Repositories</span>
+                        <span>↗</span>
+                    </a>
+                </div>
+
+                <div id="worksGrid" class="works-grid">
+                    <!-- Populated from js/data.js -->
+                </div>
+
+                <div class="works-more-banner">
+                    <div>
+                        <div class="hud-label" style="margin-bottom: 4px;">NEXT UP</div>
+                        <p style="color: var(--ink-strong); font-weight: 500;">More experiments and coursework live on GitHub.</p>
+                    </div>
+                    <a href="https://github.com/ANGGER4" target="_blank" rel="noopener noreferrer" class="btn btn-invert">
+                        <span>Follow @ANGGER4</span>
+                        <span>↗</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 03 / PRINCIPLES & STACK -->
+            <section id="principles">
+                <div class="eyebrow-bar">
+                    <span class="hud-label" style="color: var(--ink);">03 / PRINCIPLES &amp; STACK</span>
+                    <span class="hud-label eyebrow-right">SHARED BY EVERY BUILD</span>
+                </div>
+
+                <div class="section-pad" data-reveal>
+                    <h2 class="section-heading font-display" style="margin-bottom: 10px;">
+                        Built with <span class="text-accent-ink">discipline.</span>
+                    </h2>
+                    <p style="color: var(--muted); max-width: 520px;">
+                        Core engineering principles and tools I rely on—no inflated percentage bars, just capabilities used in practice.
+                    </p>
+                </div>
+
+                <div id="principlesGrid" class="principles-grid">
+                    <!-- Populated from js/data.js -->
+                </div>
+            </section>
+
+            <!-- 04 / EXPERIENCE & EDUCATION -->
+            <section id="experience">
+                <div class="eyebrow-bar">
+                    <span class="hud-label" style="color: var(--ink);">04 / EXPERIENCE &amp; EDUCATION</span>
+                    <span class="hud-label eyebrow-right">TIMELINE · 2022 — PRESENT</span>
+                </div>
+
+                <div class="section-pad" data-reveal>
+                    <h2 class="section-heading font-display" style="margin-bottom: 0;">
+                        Academic &amp; <span class="text-accent-ink">practical</span> track.
+                    </h2>
+                </div>
+
+                <div id="historyList" class="history-list">
+                    <!-- Populated from js/data.js -->
+                </div>
+            </section>
+
+            <!-- 05 / CONTACT -->
+            <section id="contact" class="contact-sunken">
+                <span class="tick tick-tl" aria-hidden="true"></span>
+                <span class="tick tick-tr" aria-hidden="true"></span>
+                <span class="tick tick-bl" aria-hidden="true"></span>
+                <span class="tick tick-br" aria-hidden="true"></span>
+
+                <div data-reveal>
+                    <div class="hud-label" style="color: var(--accent-ink);">05 / COLLABORATE · STATIC &amp; DIRECT</div>
+                    <h2 class="contact-heading font-display">
+                        Let's build something <span class="font-serif-italic" style="font-weight: 400;">thoughtful</span> together.
+                    </h2>
+                    <p class="contact-sub">
+                        Open for freelance web projects, UI/UX collaborations, and technical discussions.
+                        Reach out directly—no contact-form middlemen required.
+                    </p>
+
+                    <div class="contact-actions">
+                        <button type="button" class="btn btn-invert js-copy-email" data-email="devnauro@gmail.com">
+                            <span id="copyEmailLabel">Copy devnauro@gmail.com</span>
+                        </button>
+                        <a href="mailto:devnauro@gmail.com?subject=Portfolio%20Inquiry" class="btn btn-outline">
+                            <span>Open Mail App</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="https://wa.me/6287882520198?text=Hai kak. Aku mau minta ratecrad jasa pembuatan website dong kak." target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                            <span>WhatsApp</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="blueprint-frame">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                            <img src="assets/Logo/nauro-mark.png" alt="Nauro-Dev Icon" width="22" height="22" style="display:block;object-fit:contain;">
+                            <img src="assets/Logo/nauro-wordmark.png" alt="NAURO-DEV" height="16" style="display:block;width:auto;object-fit:contain;">
+                        </div>
+                        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; max-width: 280px;">
+                            Angger Naufal Abror — Information Technology student &amp; web developer based in Magelang, Indonesia.
+                        </p>
+                        <div class="hud-label" style="color: var(--ink);">DEVNAURO@GMAIL.COM</div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4 class="hud-label">NAVIGATION</h4>
+                        <ul class="footer-list">
+                            <li><a href="#hero">Home</a></li>
+                            <li><a href="#profile">Profile</a></li>
+                            <li><a href="#works">Selected Works</a></li>
+                            <li><a href="#principles">Principles &amp; Stack</a></li>
+                            <li><a href="#experience">History</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4 class="hud-label">FEATURED REPOS</h4>
+                        <ul class="footer-list">
+                            <li><a href="https://github.com/ANGGER4/Dream-Saver" target="_blank" rel="noopener noreferrer">Dream-Saver</a></li>
+                            <li><a href="https://github.com/ANGGER4/pos" target="_blank" rel="noopener noreferrer">POS System</a></li>
+                            <li><a href="https://github.com/ANGGER4/stunting-detector" target="_blank" rel="noopener noreferrer">Stunting Detector</a></li>
+                            <li><a href="https://github.com/ANGGER4/Enum" target="_blank" rel="noopener noreferrer">Enum Workshop</a></li>
+                            <li><a href="https://github.com/ANGGER4/BigData" target="_blank" rel="noopener noreferrer">BigData</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4 class="hud-label">CONNECT</h4>
+                        <ul class="footer-list">
+                            <li><a href="https://github.com/ANGGER4" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                            <li><a href="https://www.linkedin.com/in/angger-naufal-abror-609486366/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                            <li><a href="https://instagram.com/ini_anggr" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                            <li><a href="https://medium.com/@anggernaufal" target="_blank" rel="noopener noreferrer">Medium</a></li>
+                            <li><a href="assets/cv/CV.pdf" download="CV_Angger_Naufal_Abror.pdf">Download CV (PDF)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <span class="hud-label">&copy; <span id="currentYear"></span> ANGGER NAUFAL ABROR · STATIC BUILD</span>
+                    <a href="#hero" class="hud-label" style="color: var(--ink);">BACK TO TOP ↑</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="js/data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
