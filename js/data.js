@@ -8,7 +8,7 @@ window.PORTFOLIO_DATA = {
         university: "Universitas Tidar",
         email: "devnauro@gmail.com",
         phone: "+62 851 5633 6420",
-        whatsappUrl: "https://wa.me/6285156336420",
+        whatsappUrl: "https://wa.me/6287882520198",
         github: "https://github.com/ANGGER4",
         linkedin: "https://www.linkedin.com/in/angger-naufal-abror-609486366/",
         instagram: "https://instagram.com/ini_anggr",
