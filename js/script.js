@@ -274,9 +274,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroWordmark) {
         const text = heroWordmark.textContent || 'ANGGER ABROR';
         heroWordmark.textContent = '';
-        wmLetters = Array.from(text).map((ch) => {
+        wmLetters = Array.from(text).map((ch, idx) => {
             const span = document.createElement('span');
             span.className = 'wm-letter';
+            span.style.setProperty('--wm-i', String(idx));
             span.textContent = ch === ' ' ? '\u00A0' : ch;
             heroWordmark.appendChild(span);
             return span;
@@ -334,6 +335,22 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastPct = -1;
     let lastActiveIdx = -2;
 
+    function getHudLayout(vw) {
+        const isDesktop = vw >= 1024;
+        return {
+            isDesktop,
+            rightEdge: isDesktop ? vw - 76 : vw - 16,
+            railCenterX: isDesktop ? vw - 30 : vw - 14,
+            restScale: isDesktop ? 0.47 : 0.36,
+            railScale: isDesktop ? 0.56 : 0.42,
+            activeScale: isDesktop ? 0.92 : 0.60,
+            wmTargetScale: isDesktop ? 0.22 : 0.38,
+            restStep: isDesktop ? 22 : 17,
+            dockPassedStep: isDesktop ? 22 : 17,
+            dockActiveStep: isDesktop ? 24 : 18
+        };
+    }
+
     function measureHudMetrics() {
         cachedVw = window.innerWidth;
         cachedVh = window.innerHeight;
@@ -341,10 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cachedRailHeight = rulerTrack ? rulerTrack.clientHeight : 0;
         cachedSectionTops = hudItems.map((item) => item.el.offsetTop);
 
-        const rightEdge = cachedVw - 76;
-        const restScale = 0.47;
-        const railScale = 0.56;
-        const activeScale = 0.92;
+        const { rightEdge, restScale, railScale, activeScale } = getHudLayout(cachedVw);
 
         // Measure natural character widths at 32px font size & precompute offsets
         hudItems.forEach((item) => {
@@ -427,15 +441,9 @@ document.addEventListener('DOMContentLoaded', () => {
             rulerIndicator.style.transform = `translate3d(0, ${trackY.toFixed(1)}px, 0)`;
         }
 
-        if (vw < 1024) {
-            if (force) {
-                wmLetters.forEach((l) => { l.style.transform = 'none'; });
-            }
-            return;
-        }
-
-        const rightEdge = vw - 76;
-        const railCenterX = vw - 30;
+        const layout = getHudLayout(vw);
+        const rightEdge = layout.rightEdge;
+        const railCenterX = layout.railCenterX;
 
         // 0. Smooth scroll-linked rotation on full-bleed Hero spiral
         if (heroSpiralSvg && scrollY < 1100) {
@@ -446,27 +454,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // A. Hero Wordmark Morph (Center -> Top-Right Docked at y=68px)
+        // A. Hero Wordmark Morph (Center -> Top-Right Docked with per-letter stagger & arc)
         if (wmLetters.length && wmBaseRects.length === wmLetters.length) {
-            const morphT = smoothstep(40, 440, scrollY);
-            const targetScale = 0.22;
+            const targetScale = layout.wmTargetScale;
             const totalW = wmBaseRects.reduce((acc, b) => acc + b.w * targetScale, 0);
             let cursorX = rightEdge - totalW;
-            const targetY = 68;
+            const targetY = 66;
+            const wmCount = wmLetters.length;
 
-            for (let idx = 0; idx < wmLetters.length; idx++) {
+            for (let idx = 0; idx < wmCount; idx++) {
                 const l = wmLetters[idx];
                 const base = wmBaseRects[idx];
                 const charTargetX = cursorX + (base.w * targetScale) / 2;
                 cursorX += base.w * targetScale;
 
+                // Trailing letters lead slightly into the top-right dock with a subtle arc
+                const stagger = ((wmCount - 1 - idx) / Math.max(1, wmCount - 1)) * 90;
+                const morphT = smoothstep(30 + stagger * 0.4, 420 + stagger, scrollY);
+                const arcRot = Math.sin(morphT * Math.PI) * -10;
+                const arcLift = Math.sin(morphT * Math.PI) * -18;
+
                 const flowCx = base.cx;
                 const flowCy = base.cy - scrollY;
                 const dx = (charTargetX - flowCx) * morphT;
-                const dy = (targetY - flowCy) * morphT;
+                const dy = (targetY - flowCy) * morphT + arcLift;
                 const s = lerp(1, targetScale, morphT);
 
-                const tr = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) scale(${s.toFixed(4)})`;
+                const tr = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) rotate(${arcRot.toFixed(1)}deg) scale(${s.toFixed(4)})`;
                 if (l._lastTr !== tr) {
                     l._lastTr = tr;
                     l.style.transform = tr;
@@ -474,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // B. 4-Stage Per-Letter Floating Section Navigator
+        // B. 4-Stage Per-Letter Floating Section Navigator (Desktop & Mobile)
         const sectionTops = cachedSectionTops;
         let activeIdx = -1;
         for (let i = 0; i < sectionTops.length; i++) {
@@ -485,9 +499,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeChanged = activeIdx !== lastActiveIdx;
         lastActiveIdx = activeIdx;
 
-        const restScale = 0.47;
-        const railScale = 0.56;
-        const activeScale = 0.92;
+        const restScale = layout.restScale;
+        const railScale = layout.railScale;
+        const activeScale = layout.activeScale;
 
         for (let i = 0; i < hudItems.length; i++) {
             const item = hudItems[i];
@@ -509,9 +523,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (scrollY <= jStart) restOrderFromBottom++;
             }
 
-            const restY = vh - 26 - restOrderFromBottom * 22;
-            const dockedPassedY = 90 + i * 22;
-            const dockedActiveY = 96 + i * 24;
+            const restY = vh - 24 - restOrderFromBottom * layout.restStep;
+            const dockedPassedY = 86 + i * layout.dockPassedStep;
+            const dockedActiveY = 90 + i * layout.dockActiveStep;
 
             let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
             const n = item.chars.length;

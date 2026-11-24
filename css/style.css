@@ -473,19 +473,13 @@ button {
    4-STAGE PER-LETTER FLOATING SECTION NAVIGATOR (ArtCraft Style)
    ========================================================================== */
 .hud-jump-overlay {
-    display: none;
-}
-
-@media (min-width: 1024px) {
-    .hud-jump-overlay {
-        display: block;
-        position: fixed;
-        inset: 0;
-        z-index: 41;
-        pointer-events: none;
-        overflow: hidden;
-        contain: layout style paint;
-    }
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 41;
+    pointer-events: none;
+    overflow: hidden;
+    contain: layout style paint;
 }
 
 .hud-jump-hit {
@@ -524,7 +518,19 @@ button {
 .wm-letter {
     display: inline-block;
     white-space: pre;
-    will-change: transform;
+    will-change: transform, opacity;
+    opacity: 0;
+    animation: wm-letter-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(var(--wm-i, 0) * 32ms);
+}
+
+@keyframes wm-letter-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* ==========================================================================
@@ -714,7 +720,7 @@ button {
     font-family: 'Archivo', sans-serif;
     font-weight: 760;
     font-stretch: 118%;
-    font-size: clamp(2rem, 6.2vw, 4.5rem);
+    font-size: clamp(1.65rem, 6.4vw, 4.5rem);
     line-height: 0.96;
     letter-spacing: -0.04em;
     color: var(--ink-strong);
@@ -1371,8 +1377,10 @@ button {
     .work-preview svg,
     .spiral-rotator-cw,
     .spiral-rotator-ccw,
-    .orbit-badge {
+    .orbit-badge,
+    .wm-letter {
         animation: none;
         transition: none;
+        opacity: 1;
     }
 }
