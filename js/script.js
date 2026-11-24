@@ -400,7 +400,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Measure Hero wordmark base letter positions at identity transform
         if (heroWordmark && wmLetters.length) {
-            wmLetters.forEach((l) => { l.style.transform = 'none'; });
+            heroWordmark.style.height = '';
+            wmLetters.forEach((l) => {
+                if (l.parentNode !== heroWordmark) {
+                    heroWordmark.appendChild(l);
+                }
+                l.classList.remove('is-fixed');
+                l.style.transform = 'none';
+                l._lastTr = '';
+            });
+            const wmRect = heroWordmark.getBoundingClientRect();
             wmBaseRects = wmLetters.map((l) => {
                 const r = l.getBoundingClientRect();
                 return {
@@ -409,6 +418,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     w: r.width,
                     h: r.height
                 };
+            });
+            heroWordmark.style.height = `${wmRect.height}px`;
+            const targetParent = hudOverlay || document.body;
+            wmLetters.forEach((l) => {
+                l.classList.add('is-fixed');
+                targetParent.appendChild(l);
             });
         }
     }
@@ -454,12 +469,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // A. Hero Wordmark Morph (Center -> Top-Right Docked with per-letter stagger & arc)
+        // A. Hero Wordmark Morph (Viewport-locked fixed coordinates -> zero scroll jitter)
         if (wmLetters.length && wmBaseRects.length === wmLetters.length) {
             const targetScale = layout.wmTargetScale;
             const totalW = wmBaseRects.reduce((acc, b) => acc + b.w * targetScale, 0);
             let cursorX = rightEdge - totalW;
             const targetY = 66;
+            const morphT = smoothstep(20, 380, scrollY);
             const wmCount = wmLetters.length;
 
             for (let idx = 0; idx < wmCount; idx++) {
@@ -468,19 +484,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const charTargetX = cursorX + (base.w * targetScale) / 2;
                 cursorX += base.w * targetScale;
 
-                // Trailing letters lead slightly into the top-right dock with a subtle arc
-                const stagger = ((wmCount - 1 - idx) / Math.max(1, wmCount - 1)) * 90;
-                const morphT = smoothstep(30 + stagger * 0.4, 420 + stagger, scrollY);
-                const arcRot = Math.sin(morphT * Math.PI) * -10;
-                const arcLift = Math.sin(morphT * Math.PI) * -18;
-
-                const flowCx = base.cx;
-                const flowCy = base.cy - scrollY;
-                const dx = (charTargetX - flowCx) * morphT;
-                const dy = (targetY - flowCy) * morphT + arcLift;
+                const x = lerp(base.cx, charTargetX, morphT);
+                const y = lerp(base.cy - scrollY, targetY, morphT);
                 const s = lerp(1, targetScale, morphT);
 
-                const tr = `translate3d(${dx.toFixed(2)}px, ${dy.toFixed(2)}px, 0) rotate(${arcRot.toFixed(1)}deg) scale(${s.toFixed(4)})`;
+                const tr = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) translate(-50%, -50%) scale(${s.toFixed(4)})`;
                 if (l._lastTr !== tr) {
                     l._lastTr = tr;
                     l.style.transform = tr;

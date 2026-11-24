@@ -524,6 +524,23 @@ button {
     animation-delay: calc(var(--wm-i, 0) * 32ms);
 }
 
+.wm-letter.is-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 42;
+    pointer-events: none;
+    margin: 0;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 760;
+    font-stretch: 118%;
+    font-size: clamp(1.65rem, 6.4vw, 4.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: var(--ink-strong);
+    text-shadow: 0 1px 0 var(--bg);
+}
+
 @keyframes wm-letter-in {
     from {
         opacity: 0;
